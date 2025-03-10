@@ -1,0 +1,184 @@
+.chatContainer {
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/doodle.svg');
+    background-repeat: contain;
+    background-size: 500px;
+    opacity: 0.9;
+    z-index: 0;
+  }
+
+  .header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a73e8;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+    background: rgba(248, 249, 250, 0.85);
+    backdrop-filter: blur(0.3px);
+
+    .message {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      max-width: 80%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+
+      .userName {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .timestamp {
+        font-size: 12px;
+        margin-top: 8px;
+        opacity: 0.8;
+        display: block;
+        text-align: right;
+      }
+
+      &.currentUser {
+        margin-left: auto;
+        background: #1a73e8;
+        color: white;
+
+        .userName, .timestamp {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+
+      .deleteMessageButton {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #ff4d4f;
+        color: white;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+        
+        &:hover {
+          opacity: 1;
+          background: #ff7875;
+        }
+      }
+
+      &:hover .deleteMessageButton {
+        visibility: visible !important;
+      }
+    }
+  }
+
+  form {
+    padding: 16px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 12px;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+
+    input {
+      flex: 1;
+      padding: 14px;
+      border: 1.5px solid #1a73e8;
+      border-radius: 8px;
+      font-size: 16px;
+      background: rgba(43, 42, 42, 0.9);
+
+      &:focus {
+        outline: none;
+        border-color: #1557b0;
+      }
+    }
+
+    button {
+      background: #1a73e8;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #1557b0;
+      }
+
+      &:disabled {
+        background: #ddd;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .signOutButton {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #bb2d3b;
+    }
+  }
+}
+
+@media (hover: none) {
+  .message .deleteMessageButton {
+    visibility: visible !important;
+    opacity: 0.7;
+  }
+}
